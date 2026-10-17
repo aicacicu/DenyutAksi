@@ -9,9 +9,9 @@ public class DenyutAksiApp {
         boolean ketemu = false;
         for (int i = 0; i < jumlah; i++) {
             if (daftar[i].getId() == idCari) {
-                System.out.printf("  [Ditemukan] ID: %-4d | Nama: %-15s | Program: %-22s\n", 
-                    daftar[i].getId(), daftar[i].getNama(), daftar[i].getNamaProgram());
-                System.out.println("              Keterangan: " + daftar[i].getDetailAksi());
+                System.out.print("  [Ditemukan] ");
+                daftar[i].tampilkanInfo();
+                daftar[i].caraPartisipasi();
                 ketemu = true;
             }
         }
@@ -25,19 +25,15 @@ public class DenyutAksiApp {
         boolean ketemu = false;
         for (int i = 0; i < jumlah; i++) {
             if (daftar[i].getNama().toLowerCase().contains(namaCari.toLowerCase())) {
-                System.out.printf("  [Ditemukan] ID: %-4d | Nama: %-15s | Program: %-22s\n", 
-                    daftar[i].getId(), daftar[i].getNama(), daftar[i].getNamaProgram());
-                System.out.println("              Keterangan: " + daftar[i].getDetailAksi());
+                System.out.print("  [Ditemukan] ");
+                daftar[i].tampilkanInfo();
+                daftar[i].caraPartisipasi();
                 ketemu = true;
             }
         }
         if (!ketemu) {
             System.out.println("  Partisipan dengan kata kunci '" + namaCari + "' tidak ditemukan.");
         }
-    }
-
-    public static void simulasiAksi(PartisipanAksi item) {
-        System.out.println("    -> Aktivitas : " + item.getDetailAksi());
     }
 
     public static void main(String[] args) {
@@ -146,9 +142,21 @@ public class DenyutAksiApp {
                         System.out.println(" Belum ada data partisipan yang terdaftar.");
                     } else {
                         for (int i = 0; i < jumlahData; i++) {
-                            System.out.printf(" [%d] ID : %-4d | Nama : %-15s | Program : %s\n", 
-                                (i + 1), daftarPartisipan[i].getId(), daftarPartisipan[i].getNama(), daftarPartisipan[i].getNamaProgram());
-                            simulasiAksi(daftarPartisipan[i]);
+                            System.out.print(" [" + (i + 1) + "] ");
+                            daftarPartisipan[i].tampilkanInfo();
+                            daftarPartisipan[i].caraPartisipasi();
+                            daftarPartisipan[i].hitungTargetAksi();
+
+                            if (daftarPartisipan[i] instanceof SertifikatRelawan) {
+                                SertifikatRelawan sertif = (SertifikatRelawan) daftarPartisipan[i];
+                                sertif.cetakSertifikat();
+                            }
+
+                            if (daftarPartisipan[i] instanceof VerifikasiData) {
+                                VerifikasiData verif = (VerifikasiData) daftarPartisipan[i];
+                                verif.verifikasiBerkas();
+                            }
+
                             System.out.println("----------------------------------------------------------------------------------");
                         }
                     }

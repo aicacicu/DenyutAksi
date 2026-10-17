@@ -1,6 +1,6 @@
 package com.mycompany.denyutaksi;
 
-public class PartisipanAksi {
+public abstract class PartisipanAksi {
     private int id;
     private String nama;
     private String namaProgram;
@@ -25,7 +25,14 @@ public class PartisipanAksi {
         return this.namaProgram;
     }
 
-    public String getDetailAksi() {
-        return "Mengikuti program aksi sosial.";
+    public void tampilkanInfo() {
+        System.out.printf("ID : %-4d | Nama : %-15s | Program : %s\n", 
+            this.id, this.nama, this.namaProgram);
     }
+
+    public void caraPartisipasi() {
+        System.out.println("    -> Mengikuti program aksi sosial secara umum.");
+    }
+
+    public abstract void hitungTargetAksi();
 }

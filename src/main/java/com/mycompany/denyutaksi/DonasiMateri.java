@@ -1,6 +1,6 @@
 package com.mycompany.denyutaksi;
 
-public class DonasiMateri extends PartisipanAksi {
+public class DonasiMateri extends PartisipanAksi implements VerifikasiData {
     private int jumlahDonasi;
 
     public DonasiMateri(int id, String nama, String namaProgram, int jumlahDonasi) {
@@ -13,7 +13,17 @@ public class DonasiMateri extends PartisipanAksi {
     }
 
     @Override
-    public String getDetailAksi() {
-        return "Menyalurkan donasi dana sebesar Rp" + this.jumlahDonasi + ".";
+    public void caraPartisipasi() {
+        System.out.println("    -> Aktivitas : Menyalurkan donasi dana finansial sebesar Rp" + this.jumlahDonasi + ".");
+    }
+
+    @Override
+    public void hitungTargetAksi() {
+        System.out.println("    -> Target Aksi: Validasi pencairan dana bantuan 100% tersalurkan.");
+    }
+
+    @Override
+    public void verifikasiBerkas() {
+        System.out.println("    -> [Verifikasi] Bukti transfer/pembayaran donasi dana telah diverifikasi.");
     }
 }

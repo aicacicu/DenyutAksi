@@ -1,6 +1,6 @@
 package com.mycompany.denyutaksi;
 
-public class DonasiBarang extends PartisipanAksi {
+public class DonasiBarang extends PartisipanAksi implements SertifikatRelawan {
     private String jenisBarang;
     private int jumlahBarang;
 
@@ -11,7 +11,17 @@ public class DonasiBarang extends PartisipanAksi {
     }
 
     @Override
-    public String getDetailAksi() {
-        return "Menyerahkan bantuan logistik berupa " + this.jumlahBarang + " " + this.jenisBarang + ".";
+    public void caraPartisipasi() {
+        System.out.println("    -> Aktivitas : Menyerahkan bantuan logistik berupa " + this.jumlahBarang + " " + this.jenisBarang + ".");
+    }
+
+    @Override
+    public void hitungTargetAksi() {
+        System.out.println("    -> Target Aksi: Pemeriksaan kelayakan dan penyortiran barang logistik.");
+    }
+
+    @Override
+    public void cetakSertifikat() {
+        System.out.println("    -> [Sertifikat] Piagam apresiasi donatur logistik diterbitkan untuk " + getNama() + ".");
     }
 }
